@@ -80,10 +80,6 @@ textarea {
     border: 1px solid rgb(188, 188, 188);
 }
 
-#email-list-label {
-    /* display: inline; */
-}
-
 button {
     color: white;
     background-color: rgb(0, 149, 0);
