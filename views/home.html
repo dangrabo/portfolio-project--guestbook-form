@@ -15,7 +15,7 @@
         </h1>
     
         <!-- Form start -->
-        <form action="submit" method="post">
+        <form action="/confirm" method="post">
             
             <!-- Line 1 -->
             <div class="form-line" id="line-1">
@@ -82,16 +82,16 @@
 
             <!-- Line 5 -->
             <div class="form-line" id="line-5">
-                <input type="checkbox" name="email-list" id="email-list">
-                <label for="email-list" id="email-list-label">Please add me to your mailing list</label>
+                <input type="checkbox" name="emaillist" id="emaillist">
+                <label for="emaillist" id="emaillist-label">Please add me to your mailing list</label>
             </div>
             
             <!-- Line 6 -->
             <div class="form-line" id="line-6">
                 <label>Choose an email format:</label>
-                <input type="radio" name="format" id="html">
+                <input type="radio" name="format" id="html" value="html">
                 <label for="html">HTML</label>
-                <input type="radio" name="format" id="text">
+                <input type="radio" name="format" id="text" value="text">
                 <label for="text">Text</label>
             </div>
              
