@@ -37,11 +37,14 @@
                 <% if (contact.message) { %>
                     <li>Message: <%= contact.message %></li> 
                 <% } %>
-                <% if (contact.emaillist) { %>
+                <% if (contact.emaillist && !contact.format) { %>
+                    <li>Email list format not selected!</li> 
+                <% } else if (contact.emaillist) { %>
                     <li>Email list format: <%= contact.format %></li> 
                 <% } else { %>
                     <li>Opted out of email list</li>
                 <% } %>
+                <li>Time Stamp: <%= contact.timestamp %></li>
                 <hr>
             <% } %>
         <% } else { %>
