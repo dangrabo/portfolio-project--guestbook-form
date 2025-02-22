@@ -3,6 +3,7 @@ import express from 'express';
 const app = express();
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
+app.set('view engine', 'ejs');
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);
@@ -14,10 +15,20 @@ const contacts = [];
 
 // home route
 app.get('/', (req, res) => {
-    res.sendFile(`${import.meta.dirname}/views/home.html`);
+    res.render('home');
 });
 
 app.post('/confirm', (req,res) => {
+    // Build timestamp
+    const timestamp = Date.now();
+    const date = new Date(timestamp);
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+    
     // Get form data
     const contact = {
         fname: req.body.fname,
@@ -30,21 +41,27 @@ app.post('/confirm', (req,res) => {
         other: req.body.other,
         message: req.body.message,
         emaillist: req.body.emaillist,
-        format: req.body.format
+        format: req.body.format,
+        timestamp: `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
     };
 
-    // Add contact to contacts array
-    contacts.push(contact);
+    // Log contact
+    // console.log(contact);
+
+
+    if (contact.fname && contact.lname && contact.email) {
+        contacts.push(contact);
+        res.render('confirmation', {contact});
+    }
+    else {
+        res.send('Invalid input')
+    }
 
     // Return the confirmation page
-    res.sendFile(`${import.meta.dirname}/views/confirmation.html`);
+    // res.sendFile(`${import.meta.dirname}/views/confirmation.html`);
 });
 
-app.get('/admin/contacts', (req, res) => {
-    let html = '<h1>Orders</h1><ul>';
-    for (const contact of contacts) {
-        html += `<li>${contact.fname} ${contact.lname} - ${contact.job} - ${contact.company} - ${contact.linkedin} - ${contact.email} - ${contact.meet} - ${contact.other} - ${contact.message} - ${contact.emaillist} - ${contact.format}</li>`;
-    }
-    html += '</ul>';
-    res.send(html);
+app.get('/admin', (req, res) => {
+    console.log(contacts);
+    res.render('admin', {contacts});
 });

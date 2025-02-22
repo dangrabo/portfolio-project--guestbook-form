@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guestbook</title>
+    <link rel="stylesheet" href="styles/css-reset.css">
+    <!-- <link rel="stylesheet" href="styles/style.css"> -->
+    <link rel="stylesheet" href="styles/style-admin.css">
+    <link rel="icon" href="images/guest-book.png?v1" type="image/x-icon">
+</head>
+<body>
+    <div id="main">
+        <h2>Contact List</h2>
+        <ul>
+            <hr>
+        <% if (contacts.length) { %>
+            
+            <% for (let contact of contacts) { %>
+                <li>Name: <%= `${contact.fname} ${contact.lname}` %></li>
+                <% if (contact.job) { %>
+                    <li>Job: <%= contact.job %></li> 
+                <% } %>
+                <% if (contact.company) { %>
+                    <li>Company: <%= contact.company %></li> 
+                <% } %>
+                <% if (contact.linkedin) { %>
+                    <li>LinkedIn: <%= contact.linkedin %></li> 
+                <% } %>
+                <li>Email: <%= contact.email %></li>
+                <% if (contact.meet) { %>
+                    <li>Where we met: <%= contact.meet %></li> 
+                <% } %>
+                <% if (contact.other) { %>
+                    <li>Other meeting details: <%= contact.other %></li> 
+                <% } %>
+                <% if (contact.message) { %>
+                    <li>Message: <%= contact.message %></li> 
+                <% } %>
+                <% if (contact.emaillist) { %>
+                    <li>Email list format: <%= contact.format %></li> 
+                <% } else { %>
+                    <li>Opted out of email list</li>
+                <% } %>
+                <hr>
+            <% } %>
+        <% } else { %>
+            <li>There are no contacts to display</li>
+        <% } %>
+        </ul>
+
+        <a href="/"><button>Go Back</button></a>
+    </div>
+</body>
+</html>

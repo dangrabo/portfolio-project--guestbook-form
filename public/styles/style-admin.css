@@ -1,10 +1,7 @@
 body {
     background-color: rgb(234, 234, 234);
-    height: 75vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    height: 70%;
+    margin: 3rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -94,13 +91,14 @@ button:hover {
     background-color: rgb(0, 128, 0);
 }
 
-
-/* ------------------- Confirmation Page ------------------------- */
-
 h2 {
     font-size: 2em;
     font-weight: 600;
     margin-bottom: 10px;
+}
+
+ul {
+    /* add flex to make it look better */
 }
 
 li {
